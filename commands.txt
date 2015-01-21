@@ -1,0 +1,72 @@
+rake db:schema:dump
+rake -T
+rake -T db
+rake db:schema:dump RAILS_ENV=production
+rails generate migration DoNothingYet
+rails generate model User
+rake db:migrate RAILS_ENV=production
+rake db:migrate VERSION=0
+rake db:migrate:status
+rake db:migrate VERSION=20150116172647
+rake db:migrate:up VERSION=20150116172647
+rake db:migrate:down VERSION=20150116172647
+rake db:migrate:redo VERSION=20150116172647
+
+rails generate model Subject
+rails generate model Page
+rails generate model Section
+
+
+
+subject=Subject.new(:name => "First Subject", :position=>1)
+subject.new_record?
+subject.save
+Subject.create(:name => "Second Subject", :position=>2)
+subject = Subject.find(1)
+
+if subject.save
+	puts "Saved!"
+else
+	puts "Not Saved!"
+end
+
+first_page = Page.new(:name=>"First Page", :permalink=>"first")
+subject.pages << first_page
+subject.pages.where(:visible=>false)
+subject.pages.empty?
+subject.pages.count
+subject.pages.size
+
+
+rails generate migration CreatePagesUsersJoins
+rake db:migrate
+page = Page.find(1)
+
+me = User.create(:first_name=>"Avadhut",:last_name=>"Kore",:email=>"amkore01@gmail.com")
+page.editors << me
+page.editors
+me.pages
+
+rails generate model SectionEdit
+
+section = Section.find(1)
+edit = SectionEdit.new
+edit.summary = "Test Edit"
+section.section_edits << edit
+me = User.find(1)
+edit.editor = me
+edit.save
+me.section_edits(true)
+SectionEdit.create(:editor => me, :section => section, :summary => "ch-ch-ch-changes")
+
+section.editors
+me.sections
+section.section_edits.map{|se| se.editor}
+---------------------------------------------------------------------------------------------
+
+rails generate controller Subjects index show new edit delete
+rails generate controller Pages index show new edit delete
+rails generate controller Sections index show new edit delete
+
+
+  match ':controller(/:action(/:id))', :via => :get

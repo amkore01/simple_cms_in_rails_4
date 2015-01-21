@@ -1,0 +1,31 @@
+This rails 4 application accesses mysql database.
+
+database file		: 	database backup/simple_cms_development_with_data.sql
+database name		:	simple_cms_development
+database username	:	root
+database pasword	:	root
+
+first restore database from above file.
+
+
+This is a simple CMS(content management system) application, in which content can be managed as Subject -> Page -> Section.
+Each subject has many pages & each page has many sections.
+
+Application contains 2 parts:
+1.	Public Area : to view content		
+		accessed directly using root url	http://localhost:3000/
+2.	Admin Area	: to manage content	& to manage users	
+		accessed using special url			http://localhost:3000/admin
+
+		we can login to admin area by following login credentials :
+			Email		:	amkore01@gmail.com
+			password	:	password
+
+for bootstrap demo there is special controller : bootstrap_demo_controller and can be accessed using following link:
+http://localhost:3000/bootstrap_demo/
+
+-Only actions of bootstrap_demo_controller are accessing bootstrap library.
+-Other entire application is designed using normal css rules.
+-mannualy added bootstrap library into this application.	
+-bootstrap.min.js & bootstrap.min.css are copied to "vendor/assets" directory
+-not used gems for bootstrap

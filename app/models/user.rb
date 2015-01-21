@@ -1,0 +1,28 @@
+class User < ActiveRecord::Base
+
+	has_secure_password
+
+	has_and_belongs_to_many :pages
+	has_many :section_edits
+	has_many :sections, :through => :section_edits
+	
+	EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
+	validates_presence_of :first_name
+	validates_length_of :first_name, :maximum => 255
+	validates_presence_of :last_name
+	validates_length_of :last_name, :maximum => 255
+	validates_presence_of :email
+	validates_length_of :email, :maximum => 100
+	validates_uniqueness_of :email
+	validates_format_of :email, :with => EMAIL_REGEX
+	validates_confirmation_of :password
+	
+	scope :sorted, lambda { order("last_name ASC, first_name ASC") }
+	
+	def name
+		"#{first_name} #{last_name}"
+	end
+	
+	private
+	
+end

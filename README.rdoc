@@ -6,23 +6,25 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+	- ruby 2.1.5
+	- Rails 4.1.8
 
 * System dependencies
-
+	- mysql server 5.1
 * Configuration
 
 * Database creation
+	- database name : simple_cms_development
 
 * Database initialization
+    - restore databse from file "databse backup/simple_cms_development_with_data.sql"
 
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+	- open command prompt
+	- move your current folder location to : simple_cms_master
+	- run command : bundle install
+	- start server by running command : rails s
